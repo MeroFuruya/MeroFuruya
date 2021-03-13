@@ -8,7 +8,7 @@ Interests:
 
 
 
-_And for all the German rap loving Kids, who always ask: 
+_And for all the German rap loving Kids who always ask: 
 I don't like the [rapper](https://www.youtube.com/channel/UCeKMrU5GECquXiJl6tnTgPA)_
 
 <!---
