@@ -3,7 +3,6 @@ I’m @MeroFuruya.
 Interests:
 - Python
   - [discord.py](https://github.com/Rapptz/discord.py)
-  - [Flask](https://github.com/pallets/flask)
 - some other stuff
 
 
