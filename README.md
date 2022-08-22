@@ -2,10 +2,18 @@ I’m @MeroFuruya.
 
 Interests:
 - Python
-  - [discord.py](https://github.com/Rapptz/discord.py)
-  - SQLite (don't like it really but use it)
-
+  - Discord bots (using [i.py](https://github.com/interactions-py))
+  - mongodb ([pymongo](https://github.com/mongodb/mongo-python-driver))
 - C#
+  - just some http
+  - and vcl stuff :)
+
+- Pascal/Delphi
+  - using it at work as a dev
+  - mostly vcl stuff ([delphi](https://www.embarcadero.com/de/products/delphi) by [Embarcadero](https://github.com/Embarcadero))
+  - but also written a rest-api-wrapper for [docuware](http://docuware.com)
+
+- Minecraft stuff (but not java - i don't like that language)
 
 
 <!---
