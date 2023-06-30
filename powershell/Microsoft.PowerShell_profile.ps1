@@ -1,10 +1,6 @@
 ﻿# github autocomplete
 Invoke-Expression -Command $(gh completion -s powershell | Out-String)
 
-# boss autocomplete
-Invoke-Expression -Command $(boss completion powershell | Out-String)
-
-
 # Git autocomplete
 $GitPromptSettings = $false
 Import-Module posh-git
