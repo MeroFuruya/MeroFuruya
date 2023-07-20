@@ -13,6 +13,11 @@
 # - posh-git
 # - npm-completion
 
+# open root posh
+Function global:root {
+  Invoke-Expression -Command "start-process powershell -verb runas"
+}
+
 # github autocomplete
 Invoke-Expression -Command $(gh completion -s powershell | Out-String)
 
@@ -91,7 +96,7 @@ New-Alias -Name top -Value ntop
 
 # wsl aliases
 # The commands to import.
-$wslCommands = "awk", "grep", "head", "less", "man", "sed", "seq", "ssh", "tail", "vim", "lsd", "mc", "nano", "sudo", "cat", "sh"
+$wslCommands = "awk", "grep", "head", "man", "sed", "seq", "ssh", "tail", "vim", "lsd", "mc", "nano", "sudo", "cat", "sh", "bat", "less"
 
 # stolen from that article: https://devblogs.microsoft.com/commandline/integrate-linux-commands-into-windows-with-powershell-and-the-windows-subsystem-for-linux/
 # Register a function for each command.
@@ -126,3 +131,17 @@ function global:Format-WslArgument([string]$arg, [bool]$interactive) {
         return ($arg -replace " ", "\ ") -replace "([()|])", ('\$1', '`$1')[$interactive]
     }
 }
+
+# less wsl fix
+Function Out-WSLless {
+  if ($input.MoveNext()) {
+    $input.Reset()
+    $pagerGUID = (New-Guid)
+    $input | Out-String -Stream | wsl -e bash -c "cat > /tmp/pager.$lessGUID"
+    Invoke-Expression "global:less $args /tmp/pager.$lessGUID"
+    wsl -e bash -c "rm /tmp/pager.$lessGUID"
+  } else {
+    Invoke-Expression "global:less $args"
+  }
+}
+New-Alias -Name less -Value Out-WSLless
