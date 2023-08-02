@@ -12,11 +12,16 @@
 # Powershell-Modules used:
 # - posh-git
 # - npm-completion
+# - updated PSReadline -> "Install-Module -Force PSReadLine"
 
 # open root posh
 Function global:root {
   Invoke-Expression -Command "start-process powershell -verb runas"
 }
+
+# exit with q
+Function ex {exit}
+New-Alias -Name q -Value ex
 
 # github autocomplete
 Invoke-Expression -Command $(gh completion -s powershell | Out-String)
@@ -51,17 +56,28 @@ Function cdgh {
   cd "~/Documents/GitHub/"
 }
 
-# npm autocomplete
-Import-Module npm-completion
-
 # Autocompletion
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
+# PSReadline
+Set-PSReadlineOption -PredictionSource History
+Set-PSReadlineOption -PredictionViewStyle Inline
+Set-PSReadlineOption -WordDelimiters " ./\`"(){}[]&;|_^@'-"
+Set-PSReadlineOption -BellStyle None
+Set-PSReadlineOption -CommandValidationHandler { $true }
+Set-PSReadlineOption -ShowToolTips
+Set-PSReadlineOption -HistorySaveStyle SaveIncrementally
+
+
+# npm autocomplete
+Import-Module npm-completion
+
 # oh-my-posh
 Invoke-Expression -Command $(oh-my-posh completion powershell | Out-String)
 oh-my-posh --init --shell pwsh --config "$env:POSH_THEMES_PATH/multiverse-neon.omp.json" | Invoke-Expression
+Set-PSReadlineOption -ExtraPromptLineCount 2 # count of lines for oh-my-posh
 
 # some fun commands
 Function thx {
